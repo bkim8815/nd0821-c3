@@ -37,7 +37,7 @@ jobs:
 
     - name: Copy files to the test website with the AWS CLI
       run: |
-        aws s3 sync ./data/census.csv s3://bk-fastapi
+        aws s3 sync . s3://bk-fastapi
 
     # - name: Configure AWS credentials from Production account
     #   uses: aws-actions/configure-aws-credentials@v1
