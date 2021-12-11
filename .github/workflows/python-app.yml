@@ -11,7 +11,7 @@ on:
 
 jobs:
 
-  deploy:
+  s3:
     name: Upload to Amazon S3
     runs-on: ubuntu-latest
     # These permissions are needed to interact with GitHub's OIDC Token endpoint.
@@ -21,12 +21,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-
-    # - name: Configure AWS credentials from Test account
-    #   uses: aws-actions/configure-aws-credentials@v1
-    #   with:
-    #     role-to-assume: arn:aws:iam::111111111111:role/my-github-actions-role-test
-    #     aws-region: us-east-1
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -39,6 +33,10 @@ jobs:
       run: |
         aws s3 sync . s3://bk-fastapi
 
+    - name: dvc pull
+      uses: iterative/setup-dvc@v1
+      run: |
+        dvc pull
     # - name: Configure AWS credentials from Production account
     #   uses: aws-actions/configure-aws-credentials@v1
     #   with:
