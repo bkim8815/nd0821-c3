@@ -33,8 +33,10 @@ jobs:
       run: |
         aws s3 sync . s3://bk-fastapi
 
-    - name: dvc pull
+    - name: dvc setup
       uses: iterative/setup-dvc@v1
+
+    - name: dvc pull
       run: |
         dvc pull
     # - name: Configure AWS credentials from Production account

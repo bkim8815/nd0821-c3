@@ -13,5 +13,5 @@ class Value(BaseModel):
 
 
 @app.get("/")
-async def exercise_function(path: int, query: int, body: Value):
-    return {"path": path, "query": query, "body": body}
+async def welcome():
+    return {"welcome!!"}
