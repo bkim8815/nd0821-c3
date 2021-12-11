@@ -14,4 +14,4 @@ class Value(BaseModel):
 
 @app.get("/")
 async def welcome():
-    return {"welcome!!"}
+    return {"message":"Hello"}
