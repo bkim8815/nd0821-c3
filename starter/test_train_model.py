@@ -12,7 +12,7 @@ import pytest
 
 @pytest.fixture(scope="session")
 def data():
-    return pd.read_csv("./data/census_clean.csv")
+    return pd.read_csv("../data/census_clean.csv")
 
 
 
