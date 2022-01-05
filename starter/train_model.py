@@ -5,7 +5,8 @@
 from sklearn.model_selection import train_test_split
 import pandas as pd
 from ml.data import process_data
-from ml.model import train_model
+from ml.model import train_model, inference, compute_model_metrics
+
 import joblib
 
 # Add code to load in the data.
@@ -38,5 +39,11 @@ X_test, y_test, encoder, lb = process_data(
 
 # Train and save a model.
 model = train_model(X_train, y_train)
-
 joblib.dump(model, './model/census_model.pkl')
+
+y_preds = inference(model, X_test)
+precision, recall, fbeta = compute_model_metrics(y_test, y_preds)
+
+with open('./model/slice_output.txt', "a") as f:
+    f.write("precision, recall, fbeta\n")
+    f.write(f'{precision}, {recall}, {fbeta}')
