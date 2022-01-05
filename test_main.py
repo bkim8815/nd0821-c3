@@ -14,7 +14,6 @@ def test_get():
 def test_post_empty():
     r = client.post("/salary")
     assert r.status_code == 422
-    assert r.json() ==  {'detail': [{'loc': ['body'], 'msg': 'field required', 'type': 'value_error.missing'}]}
 
 
 def test_post_below_50():
