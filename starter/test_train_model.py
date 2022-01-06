@@ -17,6 +17,53 @@ def data():
 
 
 
+def test_process_data_training(data):
+    cat_features = [
+        "workclass",
+        "education",
+        "marital-status",
+        "occupation",
+        "relationship",
+        "race",
+        "sex",
+        "native-country",
+    ]
+
+    X_train, y_train, encoder, lb = process_data(
+        data, categorical_features=cat_features, label="salary", training=True
+    )
+
+    assert X_train != None
+    assert y_train != None
+    assert encoder != None
+    assert lb != None
+
+
+def test_process_data_training_false(data):
+    cat_features = [
+        "workclass",
+        "education",
+        "marital-status",
+        "occupation",
+        "relationship",
+        "race",
+        "sex",
+        "native-country",
+    ]
+
+    X_train, y_train, encoder, lb = process_data(
+        data, categorical_features=cat_features, label="salary", training=True
+    )
+    X_test, y_test, encoder, lb = process_data(
+        test, categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=lb
+    )
+
+    assert X_test != None
+    assert y_test != None
+    assert encoder != None
+    assert lb != None
+
+
 def test_train_model(data):
     cat_features = [
         "workclass",
@@ -34,8 +81,3 @@ def test_train_model(data):
     )
     model = train_model(X_train, y_train)
     assert model != None
-
-
-def test_train_test_split(data):
-    train, test = train_test_split(data, test_size=0.20)
-    assert test.shape[0] > 0

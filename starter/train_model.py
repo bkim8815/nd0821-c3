@@ -44,6 +44,24 @@ joblib.dump(model, './model/census_model.pkl')
 y_preds = inference(model, X_test)
 precision, recall, fbeta = compute_model_metrics(y_test, y_preds)
 
+
+
 with open('./model/slice_output.txt', "a") as f:
-    f.write("precision, recall, fbeta\n")
-    f.write(f'{precision}, {recall}, {fbeta}')
+    # f.write("precision, recall, fbeta\n")
+    for cat_feat in cat_features:
+
+        uniq_val_list = data[cat_feat].unique()
+
+        for val in uniq_val_list:
+            f.write(f'For {val}:  \n\n')
+            new_data = data[data[cat_feat] == val]
+
+            X, y, _, _ = process_data(
+                new_data, categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=lb
+            )
+
+            predict_values = inference(model, X)
+            precision, recall, fbeta = compute_model_metrics(y, predict_values)
+            f.write("precision, recall, fbeta\n")
+
+            f.write(f'{precision}, {recall}, {fbeta}\n')

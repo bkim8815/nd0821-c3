@@ -17,10 +17,20 @@ Predict whether income exceeds $50K/yr based on census data. Also known as "Adul
 
 ## Data
 
-The data was obtained from the UCI Machine Learning Repository (https://archive.ics.uci.edu/ml/datasets/census+income). The target class was modified from four categories down to two: "unacc" and "acc", where "good" and "vgood" were mapped to "acc".
+The data was obtained from the UCI Machine Learning Repository (https://archive.ics.uci.edu/ml/datasets/census+income).
 
-The original data set has 1728 rows, and a 75-25 split was used to break this into a train and test set. No stratification was done. To use the data for training a One Hot Encoder was used on the features and a label binarizer was used on the labels.
+The original data set has 1728 rows, and a 80-20 split was used to break this into a train and test set. No stratification was done.
 
 ## Metrics
 
 The model was evaluated using F1 score. The value is 0.8960.
+
+
+## Ethical Considerations
+
+There are no known ethical considerations related to training this model. only public data was used in training.
+
+
+## Caveats and Recommendations
+
+Please note that this is part of Udacity MLOPS course and contents of this repo may be subject to copyright.
