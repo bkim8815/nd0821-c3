@@ -33,10 +33,8 @@ def test_process_data_training(data):
         data, categorical_features=cat_features, label="salary", training=True
     )
 
-    assert X_train != None
-    assert y_train != None
-    assert encoder != None
-    assert lb != None
+    assert X_train.size > 0
+    assert y_train.size > 0
 
 
 def test_process_data_training_false(data):
@@ -55,13 +53,11 @@ def test_process_data_training_false(data):
         data, categorical_features=cat_features, label="salary", training=True
     )
     X_test, y_test, encoder, lb = process_data(
-        test, categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=lb
+        data, categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=lb
     )
 
-    assert X_test != None
-    assert y_test != None
-    assert encoder != None
-    assert lb != None
+    assert X_test.size > 0
+    assert y_test.size > 0
 
 
 def test_train_model(data):
